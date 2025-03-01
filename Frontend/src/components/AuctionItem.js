@@ -43,7 +43,7 @@ function AuctionItem() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>{item.itemName}</h2>
       <p>{item.description}</p>
       <p>Current Bid: ${item.currentBid}</p>
@@ -51,7 +51,7 @@ function AuctionItem() {
       <input
         type="number"
         value={bid}
-        onChange={(e) => setBid(e.target.value)}
+        onChange={(e) => setBid(Number(e.target.value))}
         placeholder="Enter your bid"
       />
       <button onClick={handleBid}>Place Bid</button>

@@ -56,6 +56,9 @@ function PostAuction() {
           onChange={(e) => setDescription(e.target.value)}
           required
         ></textarea>
+        <lable>
+          <b>Starting Bid</b>
+        </lable>
         <input
           type="number"
           placeholder="Starting Bid"
@@ -63,6 +66,7 @@ function PostAuction() {
           onChange={(e) => setStartingBid(e.target.value)}
           required
         />
+        <lable><b>Closing Time</b></lable>
         <input
           type="datetime-local"
           value={closingTime}
