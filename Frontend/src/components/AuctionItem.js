@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function AuctionItem() {
   const { id } = useParams();
   const [item, setItem] = useState({});
   const [bid, setBid] = useState(0);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -23,7 +25,7 @@ function AuctionItem() {
   }, [id]);
 
   const handleBid = async () => {
-    const username = prompt('Enter your username to place a bid:');
+
 
     if (bid <= item.currentBid) {
       setMessage('Bid must be higher than the current bid.');
@@ -31,7 +33,14 @@ function AuctionItem() {
     }
 
     try {
-      const res = await axios.post(`http://localhost:5001/bid/${id}`, { bid, username });
+      const token = localStorage.getItem('authToken');
+    if (!token) {
+      alert('You must be signed in to post an auction.');
+      navigate('/signin');
+      return;
+    }
+    
+      const res = await axios.post(`http://localhost:5001/bid/${id}`, { bid },{ headers: { Authorization: `Bearer ${token}` } });
       setMessage(res.data.message);
       if (res.data.winner) {
         setMessage(`Auction closed. Winner: ${res.data.winner}`);

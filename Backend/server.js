@@ -143,10 +143,11 @@ app.get('/auctions/:id', async (req, res) => {
 
 // Bidding on an item (Protected)
 app.post('/bid/:id', authenticate, async (req, res) => {
+  
   try {
-    const { id } = req.params;
-    const { bid } = req.body;
-    console.log(bid);
+    const { id } = req.params.id;
+    const { bid} = req.body;
+    
     const item = await AuctionItem.findById(id);
 
     if (!item) return res.status(404).json({ message: 'Auction item not found' });
