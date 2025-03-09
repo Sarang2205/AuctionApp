@@ -35,6 +35,7 @@ function PostAuction() {
       alert('Auction item posted!');
       navigate('/dashboard');
     } catch (err) {
+      console.log(err)
       alert('Failed to post auction. Please try again.');
     }
   };

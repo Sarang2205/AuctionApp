@@ -33,13 +33,13 @@ function App() {
           <nav className="navbar navbar-expand-lg ">
             <Link to="/" className="navbar-brand">BidMaster</Link>
               <div class="navbar-nav">
-                <Link to="/signup" className="nav-link">Signup</Link>
-                <Link to="/signin" className="nav-link">Signin</Link>
+                {!isAuthenticated ?<Link to="/signup" className="nav-link">Signup</Link> : ''}
+                {!isAuthenticated ? <Link to="/signin" className="nav-link">Signin</Link>:''}
                 <Link to="/dashboard" className="nav-link">Dashboard</Link>
                 <Link to="/post-auction" className="nav-link">Post Auction</Link>
-                {isAuthenticated && (
+                {isAuthenticated ? (
                   <button style={{ marginLeft: '10px', background: 'red', color: 'white' }} onClick={handleLogout} className="nav-link logout-button">Logout</button>
-                )}
+                ):''}
               </div>
           </nav>
         </header>

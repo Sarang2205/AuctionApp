@@ -31,7 +31,7 @@ function Dashboard() {
   // };
 
   return (
-    <div>
+    <div className='form-container'>
       <h2>Auction Dashboard</h2>
 
       {/* 🔹 Logout Button 
